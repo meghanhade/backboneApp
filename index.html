@@ -24,6 +24,13 @@
 		</div>
 
 	<script type="text/template" id="item-template"></script>
+		<div class-"view">
+			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+			<lable><%= title %></lable>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="<% title %>">
+	</script>
 	<script type="text/template" id="stats-template"></script>
   <script src="js/lib/jquery.min.js"></script>
   <script src="js/lib/underscore-min.js"></script>
