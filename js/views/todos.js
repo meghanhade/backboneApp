@@ -30,6 +30,25 @@ app.TodoView = Backbone.View.extend({
 		return this;
 	},
 
+	// Toggle visibility of item
+	toggleVisible: function() {
+		this.$el.toggleClass('hidden', this.isHidden());
+	},
+
+	// Determines if item should be hidden
+	isHidden: function(){
+		var isCompleted = this.model.get('completed');
+		return ( //hidden cases only
+			(!isCompleted && app.TodoFilter === 'completed')|| (isCompleted && app.TodoFilter === 'active')
+		);
+	},
+
+	// Toggle the completed state of the model
+	toggleCompleted: function() {
+		this.model.toggle();
+	},
+
+
 	// switch this mode into editing mode, displaying the input field.
 	edit: function() {
 		this.$el.addClass('editing');
@@ -52,6 +71,11 @@ app.TodoView = Backbone.View.extend({
 		if (e.which === ENTER_KEY){
 			this.close();
 		}
+	},
+
+	// remove the item, destroy the model from localstorage and delete its view
+	clear: function(){
+		this.model.destroy();
 	}
 
 });
