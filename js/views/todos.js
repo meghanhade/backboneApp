@@ -10,7 +10,9 @@ app.TodoView = Backbone.View.extend({
 
 	// The DOM events specific to an item
 	events: {
+		'click .toggle': 'togglecompleted',
 		'dblclick label': 'edit',
+		'click .destroy': 'clear',
 		'keypress .edit': 'updateOnEnter',
 		'blur .edit': 'close'
 	},
@@ -44,7 +46,7 @@ app.TodoView = Backbone.View.extend({
 	},
 
 	// Toggle the completed state of the model
-	toggleCompleted: function() {
+	togglecompleted: function() {
 		this.model.toggle();
 	},
 
@@ -73,9 +75,9 @@ app.TodoView = Backbone.View.extend({
 		}
 	},
 
-	// remove the item, destroy the model from localstorage and delete its view
-	clear: function(){
-		this.model.destroy();
-	}
+    // NEW - Remove the item, destroy the model from *localStorage* and delete its view.
+    clear: function() {
+      this.model.destroy();
+    }
 
 });
